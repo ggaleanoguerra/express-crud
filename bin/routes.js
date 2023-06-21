@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
-const controller = require('./Controller.js')
+
+//Importar el archivo controller.js
+const { controller } = require('./Controller.js')
 
 
 //Importar el archivo data.json
@@ -23,6 +25,7 @@ app.get('/users', (req, res) => {
 app.get('/users/:id', (req, res) => {
   const id = req.params.id;
   const user = users.find(user => user.id == id);
+    if (!user) res.status(404).send('No se puede mostrar el usuario porque no existe');
   res.json(user)});
 
 //Método POST para crear un nuevo usuario
@@ -36,6 +39,7 @@ app.post('/users', (req, res) => {
 app.put('/users/:id', (req, res) => {
   const updateUser = req.body;
   users.push(updateUser);
+  if (!user) res.status(404).send('El id de este usuario no fe encontrado o no existe');
   res.json(updateUser);
 });
 
@@ -44,6 +48,7 @@ app.delete('/users/:id', (req, res) => {
   const id = req.params.id;
   const user = users.find(user => user.id == id);
   users.pop(user);
+  if (!user) res.status(404).send('No se puede borrar el usuario porque ya fue eliminado o no existe');
   res.json(user);
 });
 

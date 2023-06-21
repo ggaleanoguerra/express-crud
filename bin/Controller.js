@@ -1,3 +1,5 @@
+//Controlador de la base de datos
+
 const mongoose = require('mongoose');
 
 class Controller {
@@ -7,7 +9,7 @@ class Controller {
     async connect() {
         try {
             await mongoose.connect(
-                "mongodb+srv://ggaleanoguerra:XiJEZfiXZAGmVUTT@cluster0.r0rr7nd.mongodb.net/finalproject?retryWrites=true&w=majority",
+                'mongodb+srv://admin:adminpasstodb@cluster0.r0rr7nd.mongodb.net/myDatabase?retryWrites=true&w=majority',
                 { useNewUrlParser: true }
 
             );
