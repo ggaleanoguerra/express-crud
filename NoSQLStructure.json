@@ -1,0 +1,71 @@
+[
+    {
+        "_id": {
+            "$oid": "6496570f29feac610162003c"
+        },
+        "name": "Juan",
+        "last_name": "Sin miedo",
+        "email": "mail@fakemail.com",
+        "password": "adminpass",
+        "type_user": "Docente",
+        "activities": [
+            {
+                "_id": {
+                    "$oid": "6496590329feac610162003d"
+                }
+            }
+        ],
+        "evaluation": [
+            {
+                "_id": {
+                    "$oid": "64965ccd29feac610162003f"
+                }
+            }
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "6496ecc428a3048d801012cd"
+        },
+        "title": "La vaca lola",
+        "description": "Tiene cabeza y tiene cola",
+        "source": "https://yt.com"
+    },
+    {
+        "_id": {
+            "$oid": "6496590329feac610162003d"
+        },
+        "id_user": {
+            "$oid": "6496570f29feac610162003c"
+        },
+        "id_content": {
+            "$oid": "6496ecc428a3048d801012cd"
+        },
+        "progress": {
+            "$numberLong": "100"
+        },
+        "note": {
+            "$numberLong": "5"
+        },
+        "description": "A simple description",
+        "name": "Realiza la actividad"
+    },
+    {
+        "_id": {
+            "$oid": "64965ccd29feac610162003f"
+        },
+        "questions": {
+            "$numberInt": "5"
+        },
+        "description": "This is a test quiz",
+        "id_user": {
+            "$oid": "6496570f29feac610162003c"
+        },
+        "id_content": {
+            "$oid": "6496ecc428a3048d801012cd"
+        },
+        "note": {
+            "$numberInt": "4"
+        }
+    }
+]

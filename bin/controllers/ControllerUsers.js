@@ -32,6 +32,17 @@ class ControllerUser {
         }
     }
 
+//Método GET para obtener un usuario por su id
+    async getUser(res, id) {
+        try{
+            const user = await User.findById(id);
+            res.status(200).send(user);
+        } catch(err){
+            console.error(err);
+            res.status(500).send('Ocurrió un error al obtener el usuario con el id: ' + id);
+        }
+    }
+
 //Método DELETE para eliminar todos los usuarios
    async deleteUsers(res){
     try{
@@ -42,6 +53,17 @@ class ControllerUser {
         res.status(500).send('Ocurrió un error al eliminar los usuarios');
     }
    }
+
+//Método DELETE para eliminar un usuario por su id
+    async deleteUser(res, id){
+        try{
+            const user = await User.findByIdAndDelete(id);
+            res.status(200).send('El usuario ha sido eliminado');
+        } catch(err){
+            console.error(err);
+            res.status(500).send('Ocurrió un error al eliminar el usuario con el id: ' + id);
+        }
+    }
 
    //Método POST para crear un nuevo usuario
   async createUser(res, body){
@@ -54,6 +76,17 @@ class ControllerUser {
         res.status(500).send('Ocurrió un error al crear el usuario');
     }
   } 
+
+//Método PUT para actualizar un usuario
+    async updateUser(res, id, body){
+        try{
+            const user = await User.findByIdAndUpdate(id, body);
+            res.status(200).send('Usuario actualizado exitosamente');
+        } catch (err){
+            console.error(err);
+            res.status(500).send('Ocurrió un error al actualizar el usuario con el id: ' + id);
+        }
+    }
 }
 
 exports.controllerUser = new ControllerUser();
