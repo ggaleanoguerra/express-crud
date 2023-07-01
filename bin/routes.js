@@ -8,6 +8,7 @@ const { controllerEvaluation } = require('./controllers/ControllerEvaluations')
 const { controllerActivity } = require('./controllers/ControllerActivities')
 const { controllerNote } = require('./controllers/ControllerNote')
 const { controllerProgress } = require('./controllers/ControllerProgress')
+const { controllerEvaluationData } = require('./controllers/ControllerEvaluationData')
 //Importar el archivo data.json
 const users = require('../data.json')
 
@@ -235,4 +236,32 @@ app.get('/notes', (req, res) => {
     const id = req.params.id;
     controllerProgress.updateProgressById(res, id, req.body);
     });
+
+//EVALUATION DATA
+    app.get('/evaluationData', (req, res) => {
+      controllerEvaluationData.getEvaluationDatas(res);
+      });
+      // Obtener un dato de evaluación por su id
+      app.get('/evaluationData/:id', (req, res) => {
+      const id = req.params.id;
+      controllerEvaluationData.getEvaluationData(res, id);
+      });
+      // Eliminar un dato de evaluación por su id
+      app.delete('/evaluationData/:id', (req, res) => {
+      const id = req.params.id;
+      controllerEvaluationData.deleteEvaluationData(res, id);
+      });
+      // Eliminar todos los datos de evaluación
+      app.delete('/evaluationData', (req, res) => {
+      controllerEvaluationData.deleteEvaluationDatas(res);
+      });
+      // Crear un dato de evaluación
+      app.post('/evaluationData', (req, res) => {
+      controllerEvaluationData.createEvaluationData(res, req.body);
+      });
+      // Actualizar un dato de evaluación
+      app.put('/evaluationData/:id', (req, res) => {
+      const id = req.params.id;
+      controllerEvaluationData.updateEvaluationData(res, id, req.body);
+      });
 exports.app = app;
