@@ -9,6 +9,7 @@ const { controllerActivity } = require('./controllers/ControllerActivities')
 const { controllerNote } = require('./controllers/ControllerNote')
 const { controllerProgress } = require('./controllers/ControllerProgress')
 const { controllerEvaluationData } = require('./controllers/ControllerEvaluationData')
+const { controllerQuestion } = require('./controllers/ControllerQuestion')
 //Importar el archivo data.json
 const users = require('../data.json')
 
@@ -264,4 +265,32 @@ app.get('/notes', (req, res) => {
       const id = req.params.id;
       controllerEvaluationData.updateEvaluationData(res, id, req.body);
       });
+      //Preguntas
+      app.get('/questions', (req, res) => {
+        controllerQuestion.getQuestions(res);
+        });
+        // Obtener una pregunta por su id
+        app.get('/questions/:id', (req, res) => {
+        const id = req.params.id;
+        controllerQuestion.getQuestion(res, id);
+        });
+        // Eliminar una pregunta por su id
+        app.delete('/questions/:id', (req, res) => {
+        const id = req.params.id;
+        controllerQuestion.deleteQuestion(res, id);
+        });
+        // Eliminar todas las pregunta
+        app.delete('/questions', (req, res) => {
+        controllerQuestion.deleteQuestions(res);
+        });
+        // Crear una pregunta
+        app.post('/questions', (req, res) => {
+        controllerQuestion.createQuestion(res, req.body);
+        });
+        // Actualizar una pregunta
+        app.put('/questions/:id', (req, res) => {
+        const id = req.params.id;
+        controllerQuestion.updateQuestion(res, id, req.body);
+        });
+//Exportar el módulo app
 exports.app = app;

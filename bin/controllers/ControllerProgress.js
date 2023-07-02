@@ -51,9 +51,9 @@ class ControllerProgress {
             res.status(500).send('Ocurrió un error al eliminar el progreso con el id: ' + id);
         }
     }
-    async createProgress(res, progress) {
+    async createProgress(res, body) {
         try {
-            const newProgress = await Progress.create(progress);
+            const newProgress = await Progress.create(body);
             res.status(200).send(newProgress);
         } catch (err) {
             console.error(err);
